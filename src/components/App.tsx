@@ -10,6 +10,7 @@ export default function (): JSX.Element {
             <Routes>
                 <Route path='/name' element={<Name />} />
                 <Route path='/' element={<Home />} />
+                <Route path='/table' />
             </Routes>
         </BrowserRouter>
     );
