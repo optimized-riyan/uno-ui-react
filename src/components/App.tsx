@@ -3,6 +3,7 @@ import { type JSX } from 'react';
 import './App.css';
 import Name from './Name';
 import Home from './Home';
+import Table from './Table';
 
 export default function (): JSX.Element {
     return (
@@ -10,7 +11,7 @@ export default function (): JSX.Element {
             <Routes>
                 <Route path='/name' element={<Name />} />
                 <Route path='/' element={<Home />} />
-                <Route path='/table' />
+                <Route path='/table' element={<Table />} />
             </Routes>
         </BrowserRouter>
     );
