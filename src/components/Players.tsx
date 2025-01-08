@@ -5,7 +5,7 @@ export default function Players(props: {players: ClientSidePlayer[], playerIndex
     return (
         <ul>
             {props.players.map<JSX.Element>(({index, name, cardCount}) => index !== props.playerIndex ? (
-                <li style={{ color: index === props.currPlayerIndex ? 'red' : 'initial' }}>
+                <li key={index} style={{ color: index === props.currPlayerIndex ? 'red' : 'initial' }}>
                     {name} # of cards: {cardCount}
                 </li>
             ) : <></>)}

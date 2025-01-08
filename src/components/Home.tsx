@@ -21,9 +21,13 @@ export default function (): JSX.Element {
                 'content-type': 'application/json'
             },
             withCredentials: true
-        }).then(({data: {lobbyId}}) => {
-            console.log(lobbyId);
-            navigate('/table');
+        }).then(({data: {lobbyId, lobbyCapacity}}) => {
+            navigate('/table', {
+                state: {
+                    lobbyId,
+                    lobbyCapacity
+                }
+            });
         })
         .catch(reportAxiosError);
     }
