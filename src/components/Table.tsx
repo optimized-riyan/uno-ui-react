@@ -1,7 +1,7 @@
 import { JSX, useEffect, useReducer, useRef} from "react";
-import { Card, CardColor, CardsUpdate, ClientSidePlayer, CSPlayersSync, PlayerIndexSync, ServerEvent, ServerEventType } from "../types";
+import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType } from "../types";
 import { useNavigate } from "react-router-dom";
-import tableReducer, {TableActionData, TableActionType, TableState} from "../reducer";
+import tableReducer, {TableActionData, TableActionType} from "../reducer";
 
 export default function (): JSX.Element {
     const playerIndexRef = useRef<number|null>(null);
@@ -10,7 +10,7 @@ export default function (): JSX.Element {
         cards: [],
         currentPlayer: 0,
         players: new Map<number, ClientSidePlayer>(),
-        isDirectionChanged: false,
+        isDirectionReversed: false,
         stackTop: null,
         stackColor: null,
     });
@@ -25,7 +25,7 @@ export default function (): JSX.Element {
             function dispatchWithData(type: TableActionType) {
                 dispatcher({
                     type,
-                    data: data as TableActionData
+                    payload: data as TableActionData
                 });
             }
 
@@ -36,22 +36,22 @@ export default function (): JSX.Element {
                 case ServerEventType.CSPlayersSync:
                     dispatchWithData(TableActionType.CSPlayersSync);
                     break;
-                    case ServerEventType.CardsUpdate:
+                case ServerEventType.CardsUpdate:
                     dispatchWithData(TableActionType.CardsUpdate);
                     break;
-                    case ServerEventType.StackTopUpdate:
+                case ServerEventType.StackTopUpdate:
                     dispatchWithData(TableActionType.StackTopUpdate);
                     break;
-                    case ServerEventType.CardCountUpdate:
+                case ServerEventType.CardCountUpdate:
                     dispatchWithData(TableActionType.CardCountUpdate);
                     break;
-                    case ServerEventType.DirectionUpdate:
+                case ServerEventType.DirectionUpdate:
                     dispatchWithData(TableActionType.DirectionUpdate);
                     break;
-                    case ServerEventType.PlayerTurnUpdate:
+                case ServerEventType.PlayerTurnUpdate:
                     dispatchWithData(TableActionType.PlayerTurnUpdate);
                     break;
-                    case ServerEventType.StackColorUpdate:
+                case ServerEventType.StackColorUpdate:
                     dispatchWithData(TableActionType.StackColorUpdate);
                     break;
                 case ServerEventType.CardValidity:
