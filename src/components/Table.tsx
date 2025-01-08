@@ -1,7 +1,9 @@
 import { JSX, useEffect, useReducer, useRef} from "react";
 import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType } from "../types";
 import { useNavigate } from "react-router-dom";
-import tableReducer, {TableActionData, TableActionType} from "../reducer";
+import tableReducer, {TableActionData, TableActionType} from "../tableReducer";
+import Players from "./Players";
+import PlayerCards from "./PlayerCards";
 
 export default function (): JSX.Element {
     const playerIndexRef = useRef<number|null>(null);
@@ -83,6 +85,9 @@ export default function (): JSX.Element {
     }, []);
 
     return (
-        <></>
+        <>
+            {playerIndexRef.current && <Players players={Array.from(state.players.values())} playerIndex={playerIndexRef.current} />}
+            <PlayerCards cards={state.cards} />
+        </>
     );
 }
