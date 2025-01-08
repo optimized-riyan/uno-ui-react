@@ -1,6 +1,6 @@
 import { JSX, useEffect, useReducer, useRef} from "react";
 import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType } from "../types";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import tableReducer, {TableActionData, TableActionType} from "../tableReducer";
 import Players from "./Players";
 import PlayerCards from "./PlayerCards";
@@ -9,6 +9,7 @@ import UiCard from "./UiCard";
 export default function (): JSX.Element {
     const playerIndexRef = useRef<number|null>(null);
     const navigate = useNavigate();
+    const location = useLocation();
     const [state, dispatcher] = useReducer(tableReducer, {
         cards: [],
         currentPlayer: 0,
@@ -87,6 +88,7 @@ export default function (): JSX.Element {
 
     return (
         <>
+            <h5>Lobby Id: {location.state.lobbyId} | Lobby Capacity: {location.state.lobbyCapacity}</h5>
             {playerIndexRef.current && <Players players={Array.from(state.players.values())} playerIndex={playerIndexRef.current}
                 currPlayerIndex={state.currentPlayer}
             />}
