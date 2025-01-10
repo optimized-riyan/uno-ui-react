@@ -1,5 +1,5 @@
 import { JSX, useEffect, useReducer, useRef} from "react";
-import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType } from "../types";
+import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType, CardColor } from "../types";
 import { useLocation, useNavigate } from "react-router-dom";
 import tableReducer, {TableActionData, TableActionType} from "../tableReducer";
 import Players from "./Players";
@@ -80,22 +80,23 @@ export default function (): JSX.Element {
                     // Handle ColorChoiceRequired
                     break;
                 default:
-                    console.log(type);
+                    console.log(ServerEventType[type]);
                     break;
             }
+            console.log(ServerEventType[type], data);
         };
     }, []);
 
     return (
         <>
             <h5>Lobby Id: {location.state.lobbyId} | Lobby Capacity: {location.state.lobbyCapacity}</h5>
-            {playerIndexRef.current && <Players players={Array.from(state.players.values())} playerIndex={playerIndexRef.current}
+            {playerIndexRef.current ? (<Players players={Array.from(state.players.values())} playerIndex={playerIndexRef.current}
                 currPlayerIndex={state.currentPlayer}
-            />}
+            />) : <></>}
             <PlayerCards cards={state.cards} />
             <p>Stack direction is {state.isDirectionReversed ? 'clockwise' : 'anti-clockwise'}</p>
             <p>Stack top: {state.stackTop ? <UiCard card={state.stackTop}/> : 'null'}</p>
-            <p>Stack color: {state.stackColor || 'null'}</p>
+            <p>Stack color: {CardColor[state.stackColor ?? -1] || 'null'}</p>
         </>
     );
 }

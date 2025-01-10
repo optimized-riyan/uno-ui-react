@@ -1,5 +1,5 @@
 import axios from "axios";
-import { JSX, useRef } from "react";
+import { JSX, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { reportAxiosError } from "../utils";
 
@@ -7,6 +7,10 @@ export default function (): JSX.Element {
     const joinRef = useRef<HTMLInputElement>(null);
     const hostRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem('name')) navigate('/name');
+    }, []);
 
     const inputId1 = crypto.randomUUID();
     const inputId2 = crypto.randomUUID();
