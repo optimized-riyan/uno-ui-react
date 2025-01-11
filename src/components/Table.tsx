@@ -125,7 +125,7 @@ export default function (): JSX.Element {
             />) : <></>}
             {isYourTurn() && <p style={{ color: 'red' }}>It's your turn!!!</p>}
             {isColorPickerVis && <ColorPicker setIsColorPickerVis={setIsColorPickerVis} />}
-            <PlayerCards cards={state.cards} />
+            <PlayerCards cards={state.cards} checkTurn={isYourTurn} />
             <p>Stack direction is {state.isDirectionReversed ? 'clockwise' : 'anti-clockwise'}</p>
             <p>Stack top: {state.stackTop ? <UiCard onClick={undefined} card={state.stackTop}/> : 'null'}</p>
             <p>Stack color: {CardColor[state.stackColor ?? -1] || 'null'}</p>
