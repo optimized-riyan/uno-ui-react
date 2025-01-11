@@ -1,4 +1,4 @@
-import { JSX, useEffect, useReducer, useRef, useState} from "react";
+import { JSX, useEffect, useReducer, useState} from "react";
 import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType, CardColor, ClientAction, PlayerSkipped, CardValidity, PlayerOut, InvalidAction } from "../types";
 import { useLocation, useNavigate } from "react-router-dom";
 import tableReducer, {TableActionData, TableActionType} from "../tableReducer";
@@ -9,7 +9,7 @@ import { SocketContext } from "../socketContext";
 import ColorPicker from "./ColorPicker";
 
 export default function (): JSX.Element {
-    const playerIndexRef = useRef<number|null>(null);
+    const [playerIndex, setPlayerIndex] = useState<number|null>(null);
     const navigate = useNavigate();
     const location = useLocation();
     const [socketContextValue, setSocketContextValue] = useState<((action: ClientAction) => void)|null>(null);
@@ -29,7 +29,7 @@ export default function (): JSX.Element {
     }
 
     function isYourTurn(): boolean {
-        return state.currentPlayer === playerIndexRef.current;
+        return state.currentPlayer === playerIndex;
     }
 
     useEffect(() => {
@@ -60,7 +60,7 @@ export default function (): JSX.Element {
                     alert(data as InvalidAction ?? 'action is invalid');
                     break;
                 case ServerEventType.PlayerIndexSync:
-                    playerIndexRef.current = (data as PlayerIndexSync).playerIndex;
+                    setPlayerIndex((data as PlayerIndexSync).playerIndex);
                     break;
                 case ServerEventType.CSPlayersSync:
                     dispatchWithData(TableActionType.CSPlayersSync);
@@ -120,7 +120,7 @@ export default function (): JSX.Element {
     return (
         <SocketContext.Provider value={socketContextValue!}>
             <h5>Lobby Id: {location.state.lobbyId} | Lobby Capacity: {location.state.lobbyCapacity}</h5>
-            {playerIndexRef.current ? (<Players players={Array.from(state.players.values())} playerIndex={playerIndexRef.current}
+            {playerIndex !== null ? (<Players players={Array.from(state.players.values())} playerIndex={playerIndex}
                 currPlayerIndex={state.currentPlayer}
             />) : <></>}
             {isYourTurn() && <p style={{ color: 'red' }}>It's your turn!!!</p>}
