@@ -15,7 +15,8 @@ export default function PlayerCards(props: {cards: Card[], checkTurn: () => bool
         borderStyle: 'none',
         backgroundColor: '#27f24e',
         borderRadius: '1rem',
-        fontSize: '1rem'
+        fontSize: '1rem',
+        color: 'black'
     }
 
     function sendSubmitCardAction(cardIndex: number): void {
