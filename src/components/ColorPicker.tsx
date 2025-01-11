@@ -2,7 +2,7 @@ import {CSSProperties, useContext, type JSX} from 'react';
 import { SocketContext } from '../socketContext';
 import { CardColor, ClientActionType, PickColor } from '../types';
 
-export default function ColorPicker(): JSX.Element {
+export default function ColorPicker(props: {setIsColorPickerVis: React.Dispatch<React.SetStateAction<boolean>>}): JSX.Element {
     const sendAction = useContext(SocketContext)!;
 
     function liStyle(cardColor: CardColor): CSSProperties {
@@ -27,6 +27,7 @@ export default function ColorPicker(): JSX.Element {
             type: ClientActionType.PickColor,
             data: {color} as PickColor
         });
+        props.setIsColorPickerVis(false);
     }
 
     return (

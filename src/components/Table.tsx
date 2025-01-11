@@ -1,5 +1,5 @@
 import { JSX, useEffect, useReducer, useRef, useState} from "react";
-import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType, CardColor, ClientAction, PlayerSkipped, CardValidity, PlayerOut } from "../types";
+import { ClientSidePlayer, PlayerIndexSync, ServerEvent, ServerEventType, CardColor, ClientAction, PlayerSkipped, CardValidity, PlayerOut, InvalidAction } from "../types";
 import { useLocation, useNavigate } from "react-router-dom";
 import tableReducer, {TableActionData, TableActionType} from "../tableReducer";
 import Players from "./Players";
@@ -56,6 +56,9 @@ export default function (): JSX.Element {
             }
 
             switch (type) {
+                case ServerEventType.InvalidAction:
+                    alert(data as InvalidAction ?? 'action is invalid');
+                    break;
                 case ServerEventType.PlayerIndexSync:
                     playerIndexRef.current = (data as PlayerIndexSync).playerIndex;
                     break;
@@ -121,10 +124,10 @@ export default function (): JSX.Element {
                 currPlayerIndex={state.currentPlayer}
             />) : <></>}
             {isYourTurn() && <p style={{ color: 'red' }}>It's your turn!!!</p>}
-            {isColorPickerVis && <ColorPicker />}
+            {isColorPickerVis && <ColorPicker setIsColorPickerVis={setIsColorPickerVis} />}
             <PlayerCards cards={state.cards} />
             <p>Stack direction is {state.isDirectionReversed ? 'clockwise' : 'anti-clockwise'}</p>
-            <p>Stack top: {state.stackTop ? <UiCard onClick={null} card={state.stackTop}/> : 'null'}</p>
+            <p>Stack top: {state.stackTop ? <UiCard onClick={undefined} card={state.stackTop}/> : 'null'}</p>
             <p>Stack color: {CardColor[state.stackColor ?? -1] || 'null'}</p>
             <pre style={{ lineHeight: '24px' }}>{log}</pre>
         </SocketContext.Provider>
