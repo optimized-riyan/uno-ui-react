@@ -1,11 +1,12 @@
 import { JSX, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 export default function (): JSX.Element {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement|null>(null);
     const navigate = useNavigate();
 
-    const inputId = crypto.randomUUID();
+    const inputId = uuid();
 
     function handleSubmit() {
         const name = inputRef.current?.value.trim();

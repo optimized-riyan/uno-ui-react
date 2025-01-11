@@ -2,6 +2,7 @@ import axios from "axios";
 import { JSX, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { reportAxiosError } from "../utils";
+import { v4 as uuid } from 'uuid';
 
 export default function (): JSX.Element {
     const joinRef = useRef<HTMLInputElement>(null);
@@ -12,8 +13,8 @@ export default function (): JSX.Element {
         if (!localStorage.getItem('name')) navigate('/name');
     }, []);
 
-    const inputId1 = crypto.randomUUID();
-    const inputId2 = crypto.randomUUID();
+    const inputId1 = uuid();
+    const inputId2 = uuid();
 
     function handleJoin() {
         const lobbyId = joinRef.current?.value.trim();
