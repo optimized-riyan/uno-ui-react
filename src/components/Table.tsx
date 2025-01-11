@@ -89,7 +89,7 @@ export default function (): JSX.Element {
                     break;
                 case ServerEventType.PlayerOut: {
                     const {playerIndex} = data as PlayerOut;
-                    logMessage(`${state.players.get(playerIndex)!.name} has won!`);
+                    alert(`${state.players.get(playerIndex)!.name} has won!`);
                     break;
                 }
                 case ServerEventType.PlayerSkipped:
@@ -100,7 +100,7 @@ export default function (): JSX.Element {
                     logMessage('Game has begun!');
                     break;
                 case ServerEventType.GameEnded:
-                    alert('Game has ended!');
+                    logMessage('Game has ended!');
                     break;
                 case ServerEventType.CardSubmissionRequired:
                     // no-op
