@@ -8,10 +8,10 @@ export default function ColorPicker(props: {setIsColorPickerVis: React.Dispatch<
     function liStyle(cardColor: CardColor): CSSProperties {
         const getColor = (cardColor: CardColor) => {
             switch (cardColor) {
-                case CardColor.Red: return 'red';
-                case CardColor.Green: return 'green';
-                case CardColor.Blue: return 'blue';
-                case CardColor.Yellow: return 'yellow';
+                case CardColor.Red: return '#eb606f';
+                case CardColor.Green: return '#44db8e';
+                case CardColor.Blue: return '#3574ec';
+                case CardColor.Yellow: return '#f1c74d';
             }
         };
 
