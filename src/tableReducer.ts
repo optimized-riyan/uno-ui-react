@@ -27,7 +27,7 @@ export default function tableReducer(state: TableState, action: TableAction): Ta
         case TableActionType.CardsUpdate:
             return {
                 ...state,
-                cards: (action.payload as CardsUpdate).cards
+                cards: (action.payload as CardsUpdate).cards.sort((a, b) => b.color - a.color)
             }
         case TableActionType.DirectionUpdate:
             return {

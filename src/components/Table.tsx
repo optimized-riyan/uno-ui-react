@@ -39,7 +39,6 @@ export default function (): JSX.Element {
         socket.onopen = () => {
             setSocketContextValue(() => {
                 return function (action: ClientAction): void {
-                    if (!action) throw 'not working';
                     socket.send(JSON.stringify(action));
                 }
             });
@@ -58,9 +57,6 @@ export default function (): JSX.Element {
             switch (type) {
                 case ServerEventType.InvalidAction:
                     alert(data as InvalidAction ?? 'action is invalid');
-                    break;
-                case ServerEventType.PlayerIndexSync:
-                    setPlayerIndex((data as PlayerIndexSync).playerIndex);
                     break;
                 case ServerEventType.CSPlayersSync:
                     dispatchWithData(TableActionType.CSPlayersSync);
@@ -82,6 +78,9 @@ export default function (): JSX.Element {
                     break;
                 case ServerEventType.StackColorUpdate:
                     dispatchWithData(TableActionType.StackColorUpdate);
+                    break;
+                case ServerEventType.PlayerIndexSync:
+                    setPlayerIndex((data as PlayerIndexSync).playerIndex);
                     break;
                 case ServerEventType.CardValidity:
                     const {isValid} = data as CardValidity;
@@ -114,6 +113,12 @@ export default function (): JSX.Element {
             }
         };
     }, []);
+
+    useEffect(() => {
+        if (state.players.size !== location.state.lobbyCapacity) return;
+
+        
+    }, [state.players]);
 
     if (!socketContextValue) return <>Connecting to server...</>;
 
