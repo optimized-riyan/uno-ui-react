@@ -136,7 +136,7 @@ export default function (): JSX.Element {
             {playerIndex !== null ? (<Players players={Array.from(state.players.values())} playerIndex={playerIndex}
                 currPlayerIndex={state.currentPlayer}
             />) : <></>}
-            <p className="animate__animated animate__headShake animate__infinite animate__delay-3s" style={yourTurnStyle}>{isYourTurn() ? 'It\'s your turn!!!' : ''}</p>
+            <p style={yourTurnStyle}>{isYourTurn() ? 'It\'s your turn!!!' : ''}</p>
             {isColorPickerVis && <ColorPicker setIsColorPickerVis={setIsColorPickerVis} />}
             <PlayerCards cards={state.cards} checkTurn={isYourTurn} />
             <p>Stack direction is {state.isDirectionReversed ? 'clockwise' : 'anti-clockwise'}</p>
