@@ -1,5 +1,5 @@
 import { Fragment, type JSX } from "react";
-import { ClientSidePlayer } from "../types";
+import { ClientSidePlayer } from "../../types";
 
 export default function Players(props: {players: ClientSidePlayer[], playerIndex: number, currPlayerIndex: number}): JSX.Element {
     return (

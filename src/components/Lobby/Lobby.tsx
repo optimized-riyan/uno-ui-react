@@ -16,7 +16,7 @@ import tableReducer, {
     TableActionType,
 } from '../../tableReducer';
 import { SocketContext } from '../../socketContext';
-import TableUi from './TableUi';
+import TableUi from './LobbyUi';
 
 export default function (): JSX.Element {
     const [playerIndex, setPlayerIndex] = useState<number | null>(null);

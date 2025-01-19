@@ -1,8 +1,8 @@
 import { CSSProperties, ReactNode } from "react"
 import { CardColor } from "../../types";
-import ColorPicker from "../ColorPicker";
-import PlayerCards from "../PlayerCards";
-import Players from "../Players";
+import ColorPicker from "./ColorPicker";
+import PlayerCards from "./PlayerCards";
+import Players from "./Players";
 import UiCard from "../UiCard";
 import { TableState } from "../../tableReducer";
 import { useLocation } from "react-router-dom";
@@ -34,7 +34,7 @@ export default function TableUi({state, playerIndex, isColorPickerVis, setIsColo
     }
 
     return (
-        <>
+        <div>
             <h5>Lobby Id: {location.state.lobbyId} | Lobby Capacity: {location.state.lobbyCapacity}</h5>
             {playerIndex !== null ? (<Players players={Array.from(state.players.values())} playerIndex={playerIndex}
                 currPlayerIndex={state.currentPlayer}
@@ -46,7 +46,8 @@ export default function TableUi({state, playerIndex, isColorPickerVis, setIsColo
             <p>Stack top: {state.stackTop ? <UiCard onClick={undefined} card={state.stackTop}/> : 'null'}</p>
             <p style={{ color: stackColorTextColor(state.stackColor!) }}>Stack color: {CardColor[state.stackColor ?? -1] || 'null'}</p>
             <pre style={{ lineHeight: '24px' }}>{log}</pre>
-        </>
+            
+        </div>
     );
 }
 

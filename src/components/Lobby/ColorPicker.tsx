@@ -1,6 +1,6 @@
 import {CSSProperties, useContext, type JSX} from 'react';
-import { SocketContext } from '../socketContext';
-import { CardColor, ClientActionType, PickColor } from '../types';
+import { SocketContext } from '../../socketContext';
+import { CardColor, ClientActionType, PickColor } from '../../types';
 
 export default function ColorPicker(props: {setIsColorPickerVis: React.Dispatch<React.SetStateAction<boolean>>}): JSX.Element {
     const sendAction = useContext(SocketContext)!;
