@@ -3,7 +3,7 @@ import { CardColor } from "../../types";
 import ColorPicker from "./ColorPicker";
 import PlayerCards from "./PlayerCards";
 import Players from "./Players";
-import UiCard from "../UiCard";
+import UiCard from "../../components/UiCard";
 import { TableState } from "../../tableReducer";
 import { useLocation } from "react-router-dom";
 

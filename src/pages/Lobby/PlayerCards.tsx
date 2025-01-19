@@ -1,6 +1,6 @@
 import { useContext, type CSSProperties, type JSX } from "react";
 import { Card, ClientActionType, SubmitCard } from "../../types";
-import UiCard from "../UiCard";
+import UiCard from "../../components/UiCard";
 import { SocketContext } from "../../socketContext";
 
 export default function PlayerCards(props: {cards: Card[], checkTurn: () => boolean}): JSX.Element {

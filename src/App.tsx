@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { type JSX } from 'react';
-import Name from './Name';
-import Home from './Home';
-import Table from './Lobby/Lobby';
+import Name from './pages/Name';
+import Home from './pages/Home';
+import Table from './pages/Lobby/Lobby';
 
 export default function (): JSX.Element {
     return (

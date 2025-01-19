@@ -1,7 +1,7 @@
 import axios from "axios";
 import { JSX, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { reportAxiosError } from "../utils";
+import reportAxiosError from "../utils/reportAxiosError";
 import { v4 as uuid } from 'uuid';
 
 export default function (): JSX.Element {

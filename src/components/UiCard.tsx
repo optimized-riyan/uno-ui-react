@@ -1,6 +1,6 @@
 import { CSSProperties, type JSX } from "react";
 import { Card } from "../types";
-import cardUrl from "../cardUrl";
+import cardUrl from "../utils/cardUrl";
 
 export default function UiCard(props: {card: Card, onClick: React.MouseEventHandler<HTMLImageElement> | undefined}): JSX.Element {
     const imgStyle: CSSProperties = {
