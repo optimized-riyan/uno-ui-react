@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { type JSX } from 'react';
 import Name from './Name';
 import Home from './Home';
-import Table from './Table';
+import Table from './Table/Table';
 
 export default function (): JSX.Element {
     return (
