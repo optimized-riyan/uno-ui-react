@@ -7,7 +7,7 @@ export default function Table({players}: TableProps): ReactNode {
 
     return (
         <div className={styles.table}>
-            {players.map(player => <OppCards count={player.cardCount} position={{ x: 0, y: 0 }} />)}
+            {players.map(player => <OppCards count={player.cardCount} position={{ x: '0', y: '0' }} />)}
         </div>
     );
 }

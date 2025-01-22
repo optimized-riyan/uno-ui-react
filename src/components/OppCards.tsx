@@ -1,17 +1,23 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import UiCard from "./UiCard";
 import { CardColor, CardValue } from "../types";
 
 export default function OppCards({count, position}: OppCardsProps): ReactNode {
+    const divStyle: CSSProperties = {
+        position: 'absolute',
+        left: position.x,
+        right: position.y,
+        background: 'transparent'
+    };
     
     return (
-        <ul style={{ transform: `translate(${position.x}, ${position.y})` }}>
-            <UiCard card={{ color: CardColor.Black, value: CardValue.Back }} />
-        </ul>
+        <div style={divStyle}>
+            <UiCard card={{ color: CardColor.Black, value: CardValue.Back }} height={"3.5rem"} />
+        </div>
     );
 }
 
 interface OppCardsProps {
     count: number,
-    position: {x: number, y: number}
+    position: {x: string, y: string}
 }
