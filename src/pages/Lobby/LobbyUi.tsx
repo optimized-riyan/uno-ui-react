@@ -6,8 +6,9 @@ import Players from "./Players";
 import UiCard from "../../components/UiCard";
 import { TableState } from "../../tableReducer";
 import { useLocation } from "react-router-dom";
+import Table from "./Table";
 
-export default function TableUi({state, playerIndex, isColorPickerVis, setIsColorPickerVis, log}: TableUiProps): ReactNode {
+export default function LobbyUi({state, playerIndex, isColorPickerVis, setIsColorPickerVis, log}: TableUiProps): ReactNode {
     const location = useLocation();
     
     function isYourTurn(): boolean {
@@ -34,19 +35,9 @@ export default function TableUi({state, playerIndex, isColorPickerVis, setIsColo
     }
 
     return (
-        <div>
+        <div style={{ width: 300, margin: 'auto' }}>
             <h5>Lobby Id: {location.state.lobbyId} | Lobby Capacity: {location.state.lobbyCapacity}</h5>
-            {playerIndex !== null ? (<Players players={Array.from(state.players.values())} playerIndex={playerIndex}
-                currPlayerIndex={state.currentPlayer}
-            />) : <></>}
-            <p style={yourTurnStyle}>{isYourTurn() ? 'It\'s your turn!!!' : ''}</p>
-            {isColorPickerVis && <ColorPicker setIsColorPickerVis={setIsColorPickerVis} />}
-            <PlayerCards cards={state.cards} checkTurn={isYourTurn} />
-            <p>Stack direction is {state.isDirectionReversed ? 'clockwise' : 'anti-clockwise'}</p>
-            <p>Stack top: {state.stackTop ? <UiCard onClick={undefined} card={state.stackTop}/> : 'null'}</p>
-            <p style={{ color: stackColorTextColor(state.stackColor!) }}>Stack color: {CardColor[state.stackColor ?? -1] || 'null'}</p>
-            <pre style={{ lineHeight: '24px' }}>{log}</pre>
-            
+            <Table players={Array.from(state.players.values())} />
         </div>
     );
 }

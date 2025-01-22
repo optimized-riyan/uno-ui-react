@@ -1,4 +1,4 @@
-import { JSX, useEffect, useReducer, useState } from 'react';
+import { ReactNode, useEffect, useReducer, useState } from 'react';
 import {
     ClientSidePlayer,
     PlayerIndexSync,
@@ -16,9 +16,9 @@ import tableReducer, {
     TableActionType,
 } from '../../tableReducer';
 import { SocketContext } from '../../socketContext';
-import TableUi from './LobbyUi';
+import LobbyUi from './LobbyUi';
 
-export default function (): JSX.Element {
+export default function Lobby(): ReactNode {
     const [playerIndex, setPlayerIndex] = useState<number | null>(null);
     const navigate = useNavigate();
     const [socketContextValue, setSocketContextValue] = useState<
@@ -127,7 +127,7 @@ export default function (): JSX.Element {
 
     return (
         <SocketContext.Provider value={socketContextValue!}>
-            <TableUi
+            <LobbyUi
                 state={state}
                 playerIndex={playerIndex!}
                 isColorPickerVis={isColorPickerVis}
