@@ -1,4 +1,5 @@
 import { Card, CardColor, CardValue } from '../types';
+import back from '../assets/cards/back.svg';
 import wild from '../assets/cards/wild.svg';
 import drawFour from '../assets/cards/drawFour.svg';
 import blue0 from '../assets/cards/blue0.svg';
@@ -56,6 +57,7 @@ import greenSkip from '../assets/cards/greenSkip.svg';
 
 
 export default function cardUrl(card: Card): string {
+    if (card.value === CardValue.Back) return back;
     switch (card.color) {
         case CardColor.Black:
             switch (card.value) {

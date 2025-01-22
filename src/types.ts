@@ -27,6 +27,7 @@ export enum CardValue {
     Skip,
     Reverse,
     ColorChange,
+    Back,
 }
 
 export interface ClientAction {

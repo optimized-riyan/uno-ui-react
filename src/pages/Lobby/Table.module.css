@@ -1,0 +1,9 @@
+.table {
+    position: relative;
+    background-color: #39c45e;
+    margin: 2rem auto;
+    aspect-ratio: 1;
+    height: 280px;
+    border-radius: 50%;
+    top: 1rem;
+}
